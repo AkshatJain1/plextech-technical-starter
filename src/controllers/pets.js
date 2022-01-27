@@ -15,7 +15,7 @@ const isValid = ajv.compile(pet_schema);
     // - Private data (should NOT be exported)
     // - Note that since we're storing our data in-memory (not persistent),
     //    this data will reset everytime the program restarts
-const data = require("./sample_starter.json");
+const data = require("../data/sample_starter.json");
 
 
 /* CONTROLLER FUNCTIONS */

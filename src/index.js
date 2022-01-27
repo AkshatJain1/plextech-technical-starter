@@ -1,7 +1,7 @@
 /* Do NOT add any more modules */
 var http = require('http');
 var url = require('url');
-var database = require("./database/pets");
+var database = require("./controllers/pets");
 
 http.createServer(async (req, res) => {
     const q = url.parse(req.url, true);
