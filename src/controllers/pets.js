@@ -1,5 +1,6 @@
 const Ajv = require("ajv/dist/jtd")
 const ajv = new Ajv()
+const fs = require("fs");
 
 
 const pet_schema = {
@@ -13,10 +14,12 @@ const isValid = ajv.compile(pet_schema);
 // TODO: Add more test data to work with
     // - Test data must be an array of 'Pet' objects
     // - Private data (should NOT be exported)
-    // - Note that since we're storing our data in-memory (not persistent),
-    //    this data will reset everytime the program restarts
 const data = require("../data/sample_starter.json");
 
+// A naive solution for persistent data
+const saveToFile = function () {
+    fs.writeFileSync("src/data/sample_starter.json", JSON.stringify(data, null, 2));
+}
 
 /* CONTROLLER FUNCTIONS */
 
@@ -30,6 +33,7 @@ exports.createPet = function (pet) {
     // TODO: Consider edge case
 
     data.push(pet);
+    saveToFile();
     return true;
 };
 
@@ -67,5 +71,6 @@ exports.deletePet = function (id) {
     // TODO: Consider edge case
 
     data.splice(petIndex, 1);
+    saveToFile();
     return true;
 };
